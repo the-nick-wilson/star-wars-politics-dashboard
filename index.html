@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Wars Faction & US Political Affiliation Dashboard</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; margin: 0; padding: 2rem; box-sizing: border-box; }
+  @media (prefers-color-scheme: dark) { body { background: #18181a; color: #e8e8e4; } .metric { background: #2c2c2a !important; } .card { background: #23231f !important; border-color: rgba(255,255,255,0.12) !important; } }
+  h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 14px; color: #5F5E5A; margin: 0 0 2rem; line-height: 1.5; }
+  .meta { font-size: 13px; color: #888780; margin: 0 0 4px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2rem; }
+  .metric { background: #F1EFE8; border-radius: 8px; padding: 1rem; }
+  .metric p:first-child { font-size: 12px; color: #5F5E5A; margin: 0 0 4px; }
+  .metric p:last-child { font-size: 24px; font-weight: 500; margin: 0; }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 2rem; }
+  .chart-wrap { position: relative; width: 100%; height: 300px; }
+  .section-title { font-size: 14px; font-weight: 500; margin: 0 0 4px; }
+  .section-sub { font-size: 12px; color: #888780; margin: 0 0 12px; line-height: 1.5; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; font-size: 12px; color: #5F5E5A; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .swatch { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .swatch-sq { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .timeline { position: relative; padding-left: 20px; border-left: 2px solid rgba(0,0,0,0.12); margin-bottom: 2rem; }
+  .tl-item { margin-bottom: 16px; position: relative; }
+  .tl-dot { position: absolute; left: -26px; top: 4px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; }
+  .tl-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 3px; }
+  .tl-year { font-size: 12px; font-weight: 500; min-width: 36px; }
+  .tl-label { font-size: 13px; font-weight: 500; }
+  .tl-badge { font-size: 11px; padding: 1px 8px; border-radius: 8px; }
+  .tl-note { font-size: 12px; color: #5F5E5A; margin: 0; line-height: 1.5; padding-left: 46px; }
+  .spectrum-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2rem; }
+  .spectrum-card { border-radius: 12px; padding: 14px; }
+  .spectrum-card p { margin: 0; line-height: 1.5; }
+  .footer { border-top: 0.5px solid rgba(0,0,0,0.15); padding-top: 1rem; }
+  .footer p { font-size: 13px; color: #5F5E5A; line-height: 1.7; margin: 0; }
+</style>
+</head>
+<body>
+<p class="meta">Research synthesis · May 2026</p>
+<h1>A galaxy divided: Star Wars factions and US partisan identity</h1>
+<p class="subtitle">How Americans project their politics onto the Rebel Alliance and Galactic Empire — and why both sides claim the rebels.</p>
+
+<p class="section-title" style="margin-bottom:4px;">How widespread is the political backlash, really?</p>
+<p class="section-sub">Sources: Berkeley Political Review (2024); Weaponizing the Haters study (2018)</p>
+<div style="display:flex;align-items:stretch;gap:0;margin-bottom:12px;">
+  <div class="metric" style="flex:1;border-radius:12px 0 0 12px;border:0.5px solid rgba(0,0,0,0.12);border-right:none;">
+    <p style="font-size:26px;font-weight:500;margin:0 0 4px;">7%</p>
+    <p style="font-size:13px;font-weight:500;margin:0 0 4px;">of all fans disagree with Star Wars' politics</p>
+    <p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Most fans either agree or don't think of it as political at all.</p>
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;background:#F1EFE8;border-top:0.5px solid rgba(0,0,0,0.12);border-bottom:0.5px solid rgba(0,0,0,0.12);font-size:14px;color:#888780;">→</div>
+  <div class="metric" style="flex:1;border-radius:0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;border-right:none;">
+    <p style="font-size:26px;font-weight:500;margin:0 0 4px;">41%</p>
+    <p style="font-size:13px;font-weight:500;margin:0 0 4px;">of fans who <em>do</em> see it as political disagree with the message</p>
+    <p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">A much larger share — but only among fans who already notice the political content.</p>
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;background:#F1EFE8;border-top:0.5px solid rgba(0,0,0,0.12);border-bottom:0.5px solid rgba(0,0,0,0.12);font-size:14px;color:#888780;">→</div>
+  <div class="metric" style="flex:1;border-radius:0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;border-right:none;">
+    <p style="font-size:26px;font-weight:500;margin:0 0 4px;">50%</p>
+    <p style="font-size:13px;font-weight:500;margin:0 0 4px;">of those disagreers stop watching entirely</p>
+    <p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Half of the already-small group who object to the politics disengage.</p>
+  </div>
+  <div style="display:flex;align-items:center;padding:0 6px;background:#F1EFE8;border-top:0.5px solid rgba(0,0,0,0.12);border-bottom:0.5px solid rgba(0,0,0,0.12);font-size:14px;color:#888780;">→</div>
+  <div class="metric" style="flex:1;border-radius:0 12px 12px 0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;">
+    <p style="font-size:26px;font-weight:500;margin:0 0 4px;">&gt;50%</p>
+    <p style="font-size:13px;font-weight:500;margin:0 0 4px;">of the loudest online critics weren't real fans</p>
+    <p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Most vocal haters were bots, trolls, or far-right operatives — inflating the apparent backlash.</p>
+  </div>
+</div>
+<div style="background:#F1EFE8;border-radius:8px;padding:10px 14px;border-left:3px solid #185FA5;margin-bottom:2rem;">
+  <p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.6;"><strong style="font-weight:500;">Why 7% and 41% seem to conflict:</strong> they measure different groups. 7% is of <em>everyone</em> who watches Star Wars. 41% is only of the subset who already recognize Star Wars as political. The real backlash is small; it just got amplified online.</p>
+</div>
+
+<div class="charts-grid">
+  <div>
+    <p class="section-title">Political compass: faction placement</p>
+    <p class="section-sub">Where each Star Wars faction sits on the authoritarian–libertarian and left–right axes</p>
+    <div class="legend">
+      <span><span class="swatch" style="background:#E24B4A;"></span>Galactic Empire</span>
+      <span><span class="swatch" style="background:#1D9E75;"></span>Rebel Alliance</span>
+      <span><span class="swatch" style="background:#378ADD;"></span>Galactic Republic</span>
+      <span><span class="swatch" style="background:#D4537E;"></span>Partisans (Gerrera)</span>
+      <span><span class="swatch" style="background:#EF9F27;"></span>Libertarian reading</span>
+    </div>
+    <div class="chart-wrap"><canvas id="compassChart"></canvas></div>
+  </div>
+  <div>
+    <p class="section-title">Partisan faction identification</p>
+    <p class="section-sub">Estimated strength of Rebel and Empire identification by US political group (index 0–100)</p>
+    <div class="legend">
+      <span><span class="swatch-sq" style="background:#1D9E75;"></span>Rebel Alliance identification</span>
+      <span><span class="swatch-sq" style="background:#E24B4A;"></span>Empire identification</span>
+    </div>
+    <div class="chart-wrap"><canvas id="partisanChart"></canvas></div>
+  </div>
+</div>
+
+<p class="section-title">Timeline of political co-optation</p>
+<p class="section-sub">Key moments in the contested partisan history of Star Wars symbolism</p>
+<div class="timeline" id="timeline"></div>
+
+<p class="section-title">The <em>Andor</em> resistance spectrum (2022–2025)</p>
+<p class="section-sub">How <em>Andor</em> maps the internal Rebel left onto real US political analogues</p>
+<div class="spectrum-grid" id="spectrum"></div>
+
+<div class="footer">
+  <p><strong>The Rorschach asymmetry:</strong> Both parties have claimed the Rebel narrative — Republicans in 2006, Tea Partiers against Obamacare, Trump supporters against "the establishment." But only the right has developed a serious intellectual tradition of <em>defending</em> the Empire: the Weekly Standard's "Case for the Empire" (2002), William Kristol's "rooting for the Empire from the first moment," the online right's embrace of Imperial aesthetics. There is no liberal equivalent. This asymmetry is the key finding: Rebel identification is bipartisan, but Empire identification has a distinctly right-wing ideological home.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const timelineData = [
+  { year: '1977', label: 'A New Hope released', side: 'neutral', note: "Empire = Nixon/Vietnam; Rebels = Viet Cong guerrillas. Lucas's anti-war allegory embedded from day one." },
+  { year: '1981', label: 'Lucas: "Nixon was his name"', side: 'left', note: "At a story conference Lucas explicitly names Palpatine as Richard Nixon, confirming the liberal political design." },
+  { year: '2002', label: 'Weekly Standard defends the Empire', side: 'right', note: '"The Case for the Empire" argues Palpatine is like Pinochet — a benign dictator the galaxy can do business with.' },
+  { year: '2006', label: 'RNC Election Wars video', side: 'right', note: 'Republicans cast themselves as Rebels fighting the Democrat Empire in an 8-minute Star Wars–themed campaign video.' },
+  { year: '2015', label: 'Kristol: "Rooting for the Empire"', side: 'right', note: 'Weekly Standard editor praises the Empire as a "benevolent liberal empire" with meritocracy and upward mobility.' },
+  { year: '2016', label: 'Rebel symbol adopted by resistance', side: 'left', note: "After Trump's election, the Rebel Alliance crest is widely used as a liberal resistance symbol, inverting the 2006 Republican usage." },
+  { year: '2019', label: 'Mark White fan survey', side: 'neutral', note: '5,000+ fans: Last Jedi–specific backlash correlates strongly with conservatism, anti-PC attitudes, and hostile sexism.' },
+  { year: '2022', label: 'Andor Season 1', side: 'left', note: 'Showrunner Gilroy compares Mon Mothma to Nancy Pelosi. Empire recast as fascist bureaucracy with explicit contemporary resonance.' },
+  { year: '2025', label: "Andor Season 2 & Trump's 2nd term", side: 'left', note: "Season 2 airs as Project 2025 unfolds. The Intercept calls it a message to Democrats to escalate beyond floor speeches." }
+];
+
+const spectrumData = [
+  { name: 'Mon Mothma', role: 'Institutional liberal', analog: 'Nancy Pelosi', desc: "Works within the Senate, funds rebellion covertly, delays escalation — depicted as increasingly futile.", color: '#B5D4F4', textColor: '#0C447C' },
+  { name: 'Luthen Rael', role: 'Pragmatic radical', analog: 'Covert operative left', desc: 'Sacrifices individuals for strategic gains. Understands the Empire cannot be beaten through dialogue.', color: '#9FE1CB', textColor: '#085041' },
+  { name: 'Saw Gerrera', role: 'Far-left revolutionary', analog: '"By any means necessary"', desc: 'Born from lived oppression, not philosophy. Willing to embrace violence. Foil to the patrician senators.', color: '#F4C0D1', textColor: '#72243E' },
+  { name: 'Ghorman Front', role: 'Grassroots activists', analog: 'Direct action movements', desc: 'Peaceful protest → forced into armed resistance by an Imperial false flag. Radicalization by state violence.', color: '#FAC775', textColor: '#633806' }
+];
+
+const colorMap = { left: '#378ADD', right: '#E24B4A', neutral: '#888780' };
+const bgMap = { left: '#E6F1FB', right: '#FCEBEB', neutral: '#F1EFE8' };
+const txtMap = { left: '#0C447C', right: '#791F1F', neutral: '#444441' };
+
+const tl = document.getElementById('timeline');
+timelineData.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'tl-item';
+  div.innerHTML = `<div class="tl-dot" style="background:${colorMap[item.side]};"></div>
+    <div class="tl-header">
+      <span class="tl-year" style="color:${colorMap[item.side]};">${item.year}</span>
+      <span class="tl-label">${item.label}</span>
+      <span class="tl-badge" style="background:${bgMap[item.side]};color:${txtMap[item.side]};">${item.side === 'left' ? 'liberal' : item.side === 'right' ? 'conservative' : 'neutral'}</span>
+    </div>
+    <p class="tl-note">${item.note}</p>`;
+  tl.appendChild(div);
+});
+
+const sp = document.getElementById('spectrum');
+spectrumData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'spectrum-card';
+  card.style.background = item.color;
+  card.innerHTML = `<p style="font-size:13px;font-weight:500;color:${item.textColor};margin:0 0 2px;">${item.name}</p>
+    <p style="font-size:11px;color:${item.textColor};margin:0 0 6px;opacity:0.8;">${item.role}</p>
+    <p style="font-size:11px;color:${item.textColor};font-weight:500;margin:0 0 6px;">≈ ${item.analog}</p>
+    <p style="font-size:11px;color:${item.textColor};margin:0;line-height:1.5;opacity:0.85;">${item.desc}</p>`;
+  sp.appendChild(card);
+});
+
+new Chart(document.getElementById('compassChart'), {
+  type: 'bubble',
+  data: {
+    datasets: [
+      { label: 'Galactic Empire', data: [{ x: 5, y: 8.5, r: 20 }], backgroundColor: 'rgba(226,75,74,0.75)', borderColor: '#E24B4A', borderWidth: 1.5 },
+      { label: 'Rebel Alliance', data: [{ x: -3, y: -5, r: 20 }], backgroundColor: 'rgba(29,158,117,0.75)', borderColor: '#1D9E75', borderWidth: 1.5 },
+      { label: 'Galactic Republic', data: [{ x: -1, y: 2, r: 14 }], backgroundColor: 'rgba(55,138,221,0.75)', borderColor: '#378ADD', borderWidth: 1.5 },
+      { label: 'Partisans (Gerrera)', data: [{ x: -8, y: 0.5, r: 12 }], backgroundColor: 'rgba(212,83,126,0.75)', borderColor: '#D4537E', borderWidth: 1.5 },
+      { label: 'Libertarian reading', data: [{ x: 2, y: -7.5, r: 12 }], backgroundColor: 'rgba(239,159,39,0.75)', borderColor: '#EF9F27', borderWidth: 1.5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label } } },
+    scales: {
+      x: { min: -11, max: 11, title: { display: true, text: '← Left · Right →', font: { size: 11 }, color: '#888780' }, grid: { color: 'rgba(136,135,128,0.15)' }, ticks: { color: '#888780', font: { size: 10 }, callback: v => v === -10 ? 'Far left' : v === 0 ? 'Center' : v === 10 ? 'Far right' : '' } },
+      y: { min: -11, max: 11, title: { display: true, text: '← Libertarian · Authoritarian →', font: { size: 11 }, color: '#888780' }, grid: { color: 'rgba(136,135,128,0.15)' }, ticks: { color: '#888780', font: { size: 10 }, callback: v => v === -10 ? 'Libertarian' : v === 0 ? 'Center' : v === 10 ? 'Authoritarian' : '' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('partisanChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Progressive left', 'Democrats', 'Libertarians', 'Traditional conservatives', 'MAGA / populist right'],
+    datasets: [
+      { label: 'Rebel Alliance identification', data: [92, 84, 68, 42, 22], backgroundColor: 'rgba(29,158,117,0.75)', borderColor: '#1D9E75', borderWidth: 1 },
+      { label: 'Empire identification', data: [4, 7, 18, 38, 63], backgroundColor: 'rgba(226,75,74,0.75)', borderColor: '#E24B4A', borderWidth: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: '#888780', font: { size: 10 }, autoSkip: false, maxRotation: 30 }, grid: { display: false } },
+      y: { min: 0, max: 100, title: { display: true, text: 'Identification index (0–100)', font: { size: 10 }, color: '#888780' }, ticks: { color: '#888780', font: { size: 10 } }, grid: { color: 'rgba(136,135,128,0.15)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
