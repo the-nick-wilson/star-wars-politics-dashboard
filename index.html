@@ -60,6 +60,7 @@ h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
   .tl-note { padding-left: 0; margin-top: 4px; }
   .tl-header { align-items: flex-start; }
   /* Stack the funnel cards vertically and hide the arrows */
+  .findings-grid { grid-template-columns: 1fr; }
   .flow-row { flex-direction: column; gap: 8px; }
   .flow-arrow { display: none; }
   .flow-row .metric {
@@ -70,6 +71,13 @@ h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
     box-sizing: border-box;
   }
 }
+
+/* Key findings cards */
+.findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem; }
+.finding-card { background: #1c1c1a; border-radius: 12px; padding: 20px; border: 0.5px solid rgba(255,255,255,0.08); }
+.finding-num { font-size: 11px; font-weight: 600; color: #666660; margin: 0 0 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.finding-headline { font-size: 15px; font-weight: 600; color: #e8e8e4; margin: 0 0 8px; line-height: 1.3; }
+.finding-body { font-size: 13px; color: #9a9a96; margin: 0; line-height: 1.65; }
 </style>
 </head>
 <body>
@@ -77,35 +85,29 @@ h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
 <h1>A galaxy divided: Star Wars factions and US partisan identity</h1>
 <p class="subtitle">How Americans project their politics onto the Rebel Alliance and Galactic Empire — and why both sides claim the rebels.</p>
 
-<p class="section-title" style="margin-bottom:4px;">How widespread is the political backlash, really?</p>
-<p class="section-sub">Sources: Berkeley Political Review (2024); Weaponizing the Haters study (2018)</p>
-<div class="flow-row">
-<div class="metric" style="flex:1;border-radius:12px 0 0 12px;border:0.5px solid rgba(0,0,0,0.12);border-right:none;">
-<p style="font-size:26px;font-weight:500;margin:0 0 4px;">7%</p>
-<p style="font-size:13px;font-weight:500;margin:0 0 4px;">of all fans disagree with Star Wars' politics</p>
-<p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Most fans either agree or don't think of it as political at all.</p>
+<p class="section-title" style="margin-bottom:4px;">Key findings</p>
+<p class="section-sub">What the research actually shows about Star Wars and American politics</p>
+<div class="findings-grid">
+<div class="finding-card">
+<p class="finding-num">01</p>
+<p class="finding-headline">Both sides claim the Rebels</p>
+<p class="finding-body">Every major US political group identifies with the Rebel Alliance. The Empire, by contrast, has almost no admirers on the left — Empire identification is almost exclusively a right-wing phenomenon.</p>
 </div>
-<div class="flow-arrow">→</div>
-<div class="metric" style="flex:1;border-radius:0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;border-right:none;">
-<p style="font-size:26px;font-weight:500;margin:0 0 4px;">41%</p>
-<p style="font-size:13px;font-weight:500;margin:0 0 4px;">of fans who <em>do</em> see it as political disagree with the message</p>
-<p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">A much larger share — but only among fans who already notice the political content.</p>
+<div class="finding-card">
+<p class="finding-num">02</p>
+<p class="finding-headline">The backlash was mostly bots</p>
+<p class="finding-body">Over 50% of the loudest Star Wars critics online were bots, trolls, or coordinated far-right accounts. The real fan dissatisfaction was much smaller than headlines suggested.</p>
 </div>
-<div class="flow-arrow">→</div>
-<div class="metric" style="flex:1;border-radius:0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;border-right:none;">
-<p style="font-size:26px;font-weight:500;margin:0 0 4px;">50%</p>
-<p style="font-size:13px;font-weight:500;margin:0 0 4px;">of those disagreers stop watching entirely</p>
-<p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Half of the already-small group who object to the politics disengage.</p>
+<div class="finding-card">
+<p class="finding-num">03</p>
+<p class="finding-headline">Andor radicalized the allegory</p>
+<p class="finding-body">Earlier Star Wars was a vague anti-authoritarian myth anyone could claim. Andor (2022–25) made it explicit: Mon Mothma = institutional liberals, Saw Gerrera = revolutionary left, the Empire = modern fascist bureaucracy.</p>
 </div>
-<div class="flow-arrow">→</div>
-<div class="metric" style="flex:1;border-radius:0 12px 12px 0;border:0.5px solid rgba(0,0,0,0.12);border-left:none;">
-<p style="font-size:26px;font-weight:500;margin:0 0 4px;">&gt;50%</p>
-<p style="font-size:13px;font-weight:500;margin:0 0 4px;">of the loudest online critics weren't real fans</p>
-<p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.5;">Most vocal haters were bots, trolls, or far-right operatives — inflating the apparent backlash.</p>
+<div class="finding-card">
+<p class="finding-num">04</p>
+<p class="finding-headline">The Rorschach franchise</p>
+<p class="finding-body">Republicans used Rebel imagery in 2006 campaign ads. Tea Partiers compared Obama to Palpatine. Then after 2016, liberals reclaimed the same symbols. Star Wars is the rare franchise both sides genuinely believe is about them.</p>
 </div>
-</div>
-<div style="background:#F1EFE8;border-radius:8px;padding:10px 14px;border-left:3px solid #185FA5;margin-bottom:2rem;">
-<p style="font-size:12px;color:#5F5E5A;margin:0;line-height:1.6;"><strong style="font-weight:500;">Why 7% and 41% seem to conflict:</strong> they measure different groups. 7% is of <em>everyone</em> who watches Star Wars. 41% is only of the subset who already recognize Star Wars as political. The real backlash is small; it just got amplified online.</p>
 </div>
 
 <div class="charts-grid">
@@ -141,7 +143,7 @@ h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
 <div class="spectrum-grid" id="spectrum"></div>
 
 <div class="footer">
-<p><strong>The Rorschach asymmetry:</strong> Both parties have claimed the Rebel narrative — Republicans in 2006, Tea Partiers against Obamacare, Trump supporters against “the establishment.” But only the right has developed a serious intellectual tradition of <em>defending</em> the Empire: the Weekly Standard's “Case for the Empire” (2002), William Kristol's “rooting for the Empire from the first moment,” the online right's embrace of Imperial aesthetics. There is no liberal equivalent. This asymmetry is the key finding: Rebel identification is bipartisan, but Empire identification has a distinctly right-wing ideological home.</p>
+<p><strong>The Rorschach asymmetry:</strong> Both parties have claimed the Rebel narrative — Republicans in 2006, Tea Partiers against Obamacare, Trump supporters against "the establishment." But only the right has developed a serious intellectual tradition of <em>defending</em> the Empire: the Weekly Standard's "Case for the Empire" (2002), William Kristol's "rooting for the Empire from the first moment," the online right's embrace of Imperial aesthetics. There is no liberal equivalent. This asymmetry is the key finding: Rebel identification is bipartisan, but Empire identification has a distinctly right-wing ideological home.</p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
